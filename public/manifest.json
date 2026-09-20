@@ -1,0 +1,24 @@
+{
+  "name": "NEONFLIX - 100% Legal Cinema",
+  "short_name": "NEONFLIX",
+  "description": "100% Legal, Zero-Piracy Cinema Stream featuring KOFA Archives, Green Tea Chinese Dramas, and Archive.org 4K Masters.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050508",
+  "theme_color": "#e50914",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=192&auto=format&fit=crop",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=512&auto=format&fit=crop",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

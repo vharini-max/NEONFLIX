@@ -1,0 +1,6 @@
+{
+  "name": "NEONFLIX",
+  "description": "Cyber-cinema neon glass streaming platform featuring 100% playable public domain vault, Korean KOFA archives, and 4K feature streams inside NEONFLIX player.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,363 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sora: 'Sora', sans-serif;
+    --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+    --font-grotesk: 'Space Grotesk', sans-serif;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d11;
+    color: #e4e1e8;
+    font-family: var(--font-jakarta);
+  }
+
+  body {
+    overscroll-behavior-y: none;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* Custom Scrollbar Hide */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Typography Utilities */
+.font-headline {
+  font-family: var(--font-sora);
+}
+.font-mono-tech {
+  font-family: var(--font-grotesk);
+}
+.font-body {
+  font-family: var(--font-jakarta);
+}
+
+/* PRO REQUESTED CSS CLASSES */
+.neon-glow {
+  box-shadow: 0 0 10px #E50914, 0 0 20px #E50914, 0 0 40px #E5091480;
+}
+
+.glass-pro {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Double Glow - Inner Sharp Glow + Outer Soft Blur Glow */
+.glow-double-red {
+  box-shadow: 0 0 8px #e50914, 0 0 22px rgba(229, 9, 20, 0.8), 0 0 45px rgba(229, 9, 20, 0.45);
+}
+.glow-double-cyan {
+  box-shadow: 0 0 8px #00eefc, 0 0 22px rgba(0, 238, 252, 0.8), 0 0 45px rgba(0, 238, 252, 0.45);
+}
+.glow-double-green {
+  box-shadow: 0 0 8px #00e479, 0 0 22px rgba(0, 228, 121, 0.8), 0 0 45px rgba(0, 228, 121, 0.45);
+}
+
+/* Double Glow & Multi-Layer Depth */
+.depth-3layer {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6),
+              0 12px 24px -4px rgba(0, 0, 0, 0.75),
+              0 20px 40px -6px rgba(229, 9, 20, 0.25);
+}
+
+.depth-3layer-cyan {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6),
+              0 12px 24px -4px rgba(0, 0, 0, 0.75),
+              0 20px 40px -6px rgba(0, 238, 252, 0.25);
+}
+
+/* Ken Burns Hero Slow Zoom 1.0 to 1.15 over 10s infinite */
+@keyframes kenburns-pro {
+  0% { transform: scale(1.0) translate(0, 0); }
+  50% { transform: scale(1.15) translate(-0.5%, -0.8%); }
+  100% { transform: scale(1.0) translate(0, 0); }
+}
+
+.animate-ken-burns-pro {
+  animation: kenburns-pro 10s ease-in-out infinite alternate;
+}
+
+/* Moving Lens Flare Beam over Title */
+@keyframes lens-flare-sweep {
+  0% { transform: translateX(-120%) rotate(25deg); opacity: 0; }
+  20% { opacity: 0.8; }
+  50% { transform: translateX(180%) rotate(25deg); opacity: 0.9; }
+  75% { opacity: 0; }
+  100% { transform: translateX(180%) rotate(25deg); opacity: 0; }
+}
+
+.lens-flare-sweep-active {
+  animation: lens-flare-sweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Real Neon Sign Subtle Flicker (0.9 to 1 loop with micro-flickers) */
+@keyframes neon-flicker-sign {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px rgba(0, 228, 121, 0.9)); }
+  12% { opacity: 0.92; }
+  24% { opacity: 1; }
+  45% { opacity: 0.88; }
+  47% { opacity: 0.98; }
+  68% { opacity: 1; }
+  78% { opacity: 0.9; }
+  80% { opacity: 1; }
+  92% { opacity: 0.94; }
+}
+
+.animate-neon-flicker {
+  animation: neon-flicker-sign 3.2s ease-in-out infinite;
+}
+
+/* Rotating Conic Gradient Border (Like iPhone 15 Pro / Cyber Neon) */
+@property --border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes rotate-border {
+  0% { --border-angle: 0deg; }
+  100% { --border-angle: 360deg; }
+}
+
+.rotating-border-glow {
+  position: relative;
+}
+.rotating-border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--border-angle), #e50914, #00eefc, #00e479, #e50914);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotate-border 6s linear infinite;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+/* Chromatic Aberration RGB Shift on Card Hover */
+.chromatic-hover {
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+.chromatic-hover:hover .chromatic-title {
+  text-shadow: 2.5px 0 2px rgba(229, 9, 20, 0.95), -2.5px 0 2px rgba(0, 238, 252, 0.95);
+}
+.chromatic-hover:hover .chromatic-img {
+  filter: drop-shadow(2.5px 0 0 rgba(229, 9, 20, 0.65)) drop-shadow(-2.5px 0 0 rgba(0, 238, 252, 0.65)) brightness(1.08);
+}
+
+/* Light Sweep Shine Across Posters (0.8s on hover) */
+@keyframes sweep-shine {
+  0% { transform: translateX(-150%) skewX(-20deg); opacity: 0; }
+  30% { opacity: 0.85; }
+  100% { transform: translateX(250%) skewX(-20deg); opacity: 0; }
+}
+
+.group:hover .shine-on-hover {
+  animation: sweep-shine 0.8s ease-out forwards;
+}
+
+/* Apple TV Style Card Bottom Gradient Reflection */
+.card-reflection {
+  -webkit-box-reflect: below 5px linear-gradient(to bottom, transparent 65%, rgba(0,0,0,0.15) 85%, rgba(0,0,0,0.4) 100%);
+}
+
+/* Card Real Neon Glow & Breathing Pulse Animation */
+@keyframes neon-card-breathing {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(229, 9, 20, 0.42), 0 0 40px rgba(229, 9, 20, 0.22), inset 0 0 14px rgba(229, 9, 20, 0.16);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(229, 9, 20, 0.7), 0 0 55px rgba(229, 9, 20, 0.38), inset 0 0 20px rgba(229, 9, 20, 0.3);
+  }
+}
+
+.card-neon-pulse {
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.45), 0 0 40px rgba(229, 9, 20, 0.25), inset 0 0 15px rgba(229, 9, 20, 0.2);
+  animation: neon-card-breathing 4s ease-in-out infinite;
+}
+
+.card-neon-pulse:hover {
+  box-shadow: 0 0 35px rgba(229, 9, 20, 0.85), 0 0 65px rgba(229, 9, 20, 0.5), inset 0 0 22px rgba(229, 9, 20, 0.4), 0 20px 45px rgba(0, 0, 0, 0.9);
+}
+
+/* Floating Glassmorphic Bottom Nav with 24px blur and neon border */
+.bottom-nav-glass {
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  background-color: rgba(14, 14, 18, 0.82);
+  border: 1.5px solid rgba(229, 9, 20, 0.5);
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.38),
+              0 0 45px rgba(229, 9, 20, 0.2),
+              0 15px 40px rgba(0, 0, 0, 0.95);
+}
+
+/* Cyber Glitch Animation for Hero Title */
+@keyframes cyber-glitch-layers {
+  0% {
+    transform: translate(0);
+    clip-path: inset(80% 0 0 0);
+  }
+  10% {
+    transform: translate(-3px, -2px);
+    clip-path: inset(10% 0 85% 0);
+  }
+  20% {
+    transform: translate(3px, 1px);
+    clip-path: inset(45% 0 35% 0);
+  }
+  30% {
+    transform: translate(-2px, 2px);
+    clip-path: inset(70% 0 15% 0);
+  }
+  40% {
+    transform: translate(2px, -1px);
+    clip-path: inset(25% 0 60% 0);
+  }
+  50% {
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.glitch-title-active {
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 20px rgba(229, 9, 20, 0.8), 0 0 40px rgba(229, 9, 20, 0.4), 0 0 2px #fff;
+}
+
+.glitch-title-active::before,
+.glitch-title-active::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glitch-title-active::before {
+  left: 2px;
+  text-shadow: -2px 0 #00eefc, 0 0 10px rgba(0, 238, 252, 0.6);
+  animation: cyber-glitch-layers 3s infinite linear alternate-reverse;
+}
+
+.glitch-title-active::after {
+  left: -2px;
+  text-shadow: 2px 0 #e50914, 0 0 10px rgba(229, 9, 20, 0.6);
+  animation: cyber-glitch-layers 2.2s infinite linear alternate;
+}
+
+/* Anamorphic Lens Flare on Top of Hero */
+@keyframes anamorphic-pulse {
+  0%, 100% {
+    opacity: 0.75;
+    transform: scaleX(1) scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.15) scaleY(1.3);
+  }
+}
+
+.animate-anamorphic-flare {
+  animation: anamorphic-pulse 4s ease-in-out infinite;
+}
+
+/* Cyber Title Glitch & Aura */
+.cyber-glitch-title {
+  text-shadow: 0 0 20px rgba(229,9,20,0.7), 0 0 40px rgba(229,9,20,0.35), 0 0 2px #fff;
+}
+
+/* Shimmer Skeleton */
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton-shimmer-bar {
+  position: relative;
+  overflow: hidden;
+  background-color: #1a1a20;
+}
+.skeleton-shimmer-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), rgba(229, 9, 20, 0.12), transparent);
+  animation: skeleton-shimmer 1.8s infinite;
+}
+
+/* Skeleton Pulse Glow */
+@keyframes skeleton-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(229, 9, 20, 0.4), 0 0 40px rgba(0, 238, 252, 0.2);
+  }
+}
+.skeleton-pulse-glow {
+  animation: skeleton-pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* Rotating Conic Border (iPhone 15 Pro Animated Border Effect) */
+@keyframes rotate-conic-border {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.iphone-pro-border-container {
+  position: relative;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  padding: 1.5px;
+}
+
+.iphone-pro-border-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, #e50914, #00eefc, #00e479, #e50914);
+  animation: rotate-conic-border 6s linear infinite;
+  z-index: 0;
+}
+
+.iphone-pro-border-content {
+  position: relative;
+  z-index: 1;
+  background: #141419;
+  border-radius: calc(0.85rem - 1.5px);
+  width: 100%;
+  height: 100%;
+}
